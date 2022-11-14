@@ -1,7 +1,14 @@
 
-export const TaksItem = ({ title }) => {
+export const TaksItem = ({
+    title,
+    taskDeleteHandler,
+    taskId,
+}) => {
 
     return (
-        <li>{title}</li>
+        <li>
+            {title}
+            <button onClick={() => taskDeleteHandler(taskId)}>X</button>
+        </li >
     );
 };

@@ -15,10 +15,14 @@ function App() {
         setTasks(state => [
             ...state,
             {
-                _id: state[state.length - 1]._id + 1,
+                _id: state[state.length - 1]?._id + 1 || 1,
                 title: newTask
             }
         ]);
+    };
+
+    const taskDeleteHandler = (taskId) => {
+        setTasks(state => state.filter(x => x._id != taskId))
     }
 
     return (
@@ -28,7 +32,7 @@ function App() {
             </header>
 
             <main>
-                <TaskList tasks={tasks} />
+                <TaskList tasks={tasks} taskDeleteHandler={taskDeleteHandler} />
                 <CreateTask taskCreateHandler={taskCreateHandler} />
             </main>
 

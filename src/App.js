@@ -1,8 +1,8 @@
 import './App.css';
 import { CreateTask } from './components/CreateTask';
 import { TaskList } from './components/TaskList';
-import { useEffect, useState } from 'react'
 import { useFetch } from './hooks/useFetch';
+import { useTodosApi } from './hooks/useTodos'
 
 function App() {
 
@@ -17,6 +17,7 @@ function App() {
     // }, [])
 
     const [tasks, setTasks, isLoading] = useFetch('http://localhost:3030/jsonstore/todos', [])
+    const { removeTodo } = useTodosApi();
 
     const taskCreateHandler = (newTask) => {
         setTasks(state => [
@@ -28,7 +29,9 @@ function App() {
         ]);
     };
 
-    const taskDeleteHandler = (taskId) => {
+    const taskDeleteHandler = async (taskId) => {
+        await removeTodo(taskId)
+
         setTasks(state => state.filter(x => x._id != taskId))
     }
 

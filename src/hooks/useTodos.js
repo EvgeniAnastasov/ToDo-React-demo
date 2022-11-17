@@ -11,5 +11,13 @@ export const useTodosApi = () => {
             .then(res => res.json())
     }
 
-    return { removeTodo }
+    const createTodo = (title) => {
+        return fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({ title })
+        }).then(res => res.json())
+    }
+
+
+    return { removeTodo, createTodo }
 }

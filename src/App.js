@@ -3,6 +3,7 @@ import { CreateTask } from './components/CreateTask';
 import { TaskList } from './components/TaskList';
 import { useFetch } from './hooks/useFetch';
 import { useTodosApi } from './hooks/useTodos'
+import { TaskContext } from './context/taskContext';
 
 function App() {
 
@@ -36,20 +37,22 @@ function App() {
     }
 
     return (
-        <div className="App">
-            <header>
-                <h1>TODO App</h1>
-            </header>
+        <TaskContext.Provider value={{taskDeleteHandler}}>
+            <div className="App">
+                <header>
+                    <h1>TODO App</h1>
+                </header>
 
-            <main>
-                {isLoading
-                    ? <p>Loading...</p>
-                    : <TaskList tasks={tasks} taskDeleteHandler={taskDeleteHandler} />}
+                <main>
+                    {isLoading
+                        ? <p>Loading...</p>
+                        : <TaskList tasks={tasks} />}
 
-                <CreateTask taskCreateHandler={taskCreateHandler} />
-            </main>
+                    <CreateTask taskCreateHandler={taskCreateHandler} />
+                </main>
 
-        </div>
+            </div>
+        </TaskContext.Provider>
     );
 }
 

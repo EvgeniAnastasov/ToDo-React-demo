@@ -37,7 +37,7 @@ function App() {
     }
 
     return (
-        <TaskContext.Provider value={{taskDeleteHandler}}>
+        <TaskContext.Provider value={{ tasks, taskDeleteHandler }}>
             <div className="App">
                 <header>
                     <h1>TODO App</h1>
@@ -46,7 +46,7 @@ function App() {
                 <main>
                     {isLoading
                         ? <p>Loading...</p>
-                        : <TaskList tasks={tasks} />}
+                        : <TaskList />}
 
                     <CreateTask taskCreateHandler={taskCreateHandler} />
                 </main>

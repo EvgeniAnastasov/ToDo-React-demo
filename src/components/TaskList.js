@@ -1,8 +1,10 @@
+import { useContext } from "react"
+import { TaskContext } from "../context/taskContext"
 import { TaksItem } from "./TaskItem"
 
-export const TaskList = ({
-    tasks,
-}) => {
+export const TaskList = () => {
+
+    const { tasks } = useContext(TaskContext)
 
     return (
         <ul>

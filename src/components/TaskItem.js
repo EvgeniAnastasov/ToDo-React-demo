@@ -1,18 +1,23 @@
 import { useContext } from "react";
 import { TaskContext } from "../context/taskContext";
+import styles from './TaskItem.module.css'
 
 export const TaksItem = ({
-    title,
-    taskId,
+    task
 }) => {
 
-    const { taskDeleteHandler } = useContext(TaskContext)
+    const { taskDeleteHandler, toggleTask } = useContext(TaskContext)
 
 
     return (
         <li>
-            {title}
-            <button onClick={() => taskDeleteHandler(taskId)}>X</button>
+            <span
+                className={task.isCompleted ? styles.completed : ""}
+                onClick={() => toggleTask(task)}
+            >
+                {task.title}</span>
+
+            <button onClick={() => taskDeleteHandler(task._id)}>X</button>
         </li >
     );
 };
